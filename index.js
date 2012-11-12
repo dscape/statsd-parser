@@ -9,7 +9,7 @@ var EVENTS = ['stat', 'error', 'end', 'ready'];
 
 var isStatsD =
   //
-  // stat   :value                  |type       @sample_rate <optional>
+  // stat   :value                  |type       |@sample_rate <optional>
   //
   // Groups:
   //  * stat        : 1
@@ -17,7 +17,7 @@ var isStatsD =
   //  * type        : 3
   //  * sample_rate : 5
   //
-  /^(.+):([\-+]?[0-9]*\.?[0-9]+)\|(s|g|ms|c)(@([\-+]?[0-9]*\.?[0-9]))?/;
+  /^(.+):([\-+]?[0-9]*\.?[0-9]+)\|(s|g|ms|c)(|@([\-+]?[0-9]*\.?[0-9]))?/;
 
 //
 // Remove error and end for event handling
