@@ -1,0 +1,24 @@
+{
+  "name": "statsd-parser",
+  "version": "0.0.0",
+  "description": "Streaming parser for the statsd protocol",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dscape/statsd-parser.git"
+  },
+  "keywords": [
+    "statsd",
+    "parser",
+    "streams",
+    "streaming",
+    "stats",
+    "metrics",
+    "lynx"
+  ],
+  "author": "Nuno Job <nunojobpinto@gmail.com> (http://nunojob.com)",
+  "license": "Apache 2"
+}
