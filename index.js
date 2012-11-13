@@ -17,7 +17,7 @@ var isStatsD =
   //  * type        : 3
   //  * sample_rate : 5
   //
-  /^(.+):([\-+]?[0-9]*\.?[0-9]+)\|(s|g|ms|c)(|@([\-+]?[0-9]*\.?[0-9]))?/;
+  /^(.+):([\-+]?[0-9]*\.?[0-9]+)\|(s|g|ms|c)(\|@([\-+]?[0-9]*\.?[0-9]*))?$/;
 
 //
 // Remove error and end for event handling
@@ -262,6 +262,33 @@ StatsdParser.prototype.write = function write (chunk) {
 
   emitStat(parser);
   return parser;
+};
+
+statsd.isStatsd = function test(string) {
+  return isStatsD.test(string);
+};
+
+statsd.matchStatsd = function match(string) {
+  var m = isStatsD.exec(string);
+  if(m) {
+    var stat =
+      { stat  : m[1]
+      , value : m[2]
+      , type  : m[3]
+      };
+
+    if(typeof m[5] === 'string' && m[5] !== '') {
+      stat.sample_rate = m[5];
+    }
+
+    return stat;
+  }
+  else {
+    //
+    // Just like in the original exec
+    //
+    return null;
+  }
 };
 
 //

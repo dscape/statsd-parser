@@ -61,6 +61,25 @@ fs.createReadStream("file.statsd")
   .pipe(fs.createReadStream("file-fixed.statsd"))
 ```
 
+you also have two helper functions to see if a string is a statsd stat `isStatsd` and one to check extract values from a statsd string (or null if it's not statsd)
+
+``` js
+> var statsd = require('statsd-parser');
+> statsd.isStatsd('a:1|c|@0.1')
+true
+> statsd.matchStatsd('a:1|c|@0.1')
+{ stat: 'a',
+  value: '1',
+  type: 'c',
+  sample_rate: '0.1' }
+> statsd.matchStatsd('b:200|s')
+{ stat: 'b',
+  value: '200',
+  type: 's' }
+> statsd.matchStatsd('b:200|s@INVALID')
+null
+```
+
 # contribute
 
 everyone is welcome to contribute. patches, bug-fixes, new features
