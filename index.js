@@ -17,7 +17,7 @@ var isStatsD =
   //  * type        : 3
   //  * sample_rate : 5
   //
-  /^(.+):([\-+]?[0-9]*\.?[0-9]+)\|(s|g|ms|c)(\|@([\-+]?[0-9]*\.?[0-9]*))?$/;
+  /^(.+):([\-+]?[0-9]*\.?[0-9]+)\|(s|g|ms|c)(\|@([\-+]?[0-9]*\.?[0-9]*))?\s*$/;
 
 //
 // Remove error and end for event handling
@@ -300,17 +300,10 @@ function emitStat(parser, fromNewline) {
     return;
   }
 
-  var m = isStatsD.exec(parser.buffer);
+  var stat = statsd.matchStatsd(parser.buffer);
 
-  if(m) {
-    //
-    //  * stat        : 1
-    //  * value       : 2
-    //  * type        : 3
-    //  * sample_rate : 5
-    //
-    var statObject = {stat: m[1], value: m[2], type: m[3], sample_rate: m[5]};
-    emit(parser, 'onstat', parser.buffer, statObject);
+  if(stat) {
+    emit(parser, 'onstat', parser.buffer, stat);
     parser.buffer = '';
   }
   else {

@@ -1,6 +1,6 @@
 {
   "name": "statsd-parser",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Streaming parser for the statsd protocol",
   "main": "index.js",
   "scripts": {
