@@ -315,8 +315,9 @@ function emitStat(parser, fromNewline) {
   }
   else {
     if(fromNewline) {
+      var buf = parser.buffer;
       parser.buffer = '';
-      error(parser, "Buffered Line was not valid stats d");
+      error(parser, "Buffered Line was not valid stats d `" + buf + "`.");
     }
   }
 }
